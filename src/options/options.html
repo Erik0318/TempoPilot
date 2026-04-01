@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TempoPilot Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <h1>TempoPilot</h1>
+        <p class="subtitle">Video Playback Speed Controller</p>
+      </div>
+      <label class="theme-toggle" title="Toggle dark mode">
+        <input type="checkbox" id="darkMode">
+        <span class="slider"></span>
+        <span class="theme-icons"><span>☀️</span><span>🌙</span></span>
+      </label>
+    </header>
+
+    <section class="card">
+      <h2>Playback</h2>
+      <div class="field">
+        <label for="speedStep">Speed step</label>
+        <input type="number" id="speedStep" min="0.05" max="1" step="0.05">
+      </div>
+      <div class="field">
+        <label for="minSpeed">Minimum speed</label>
+        <input type="number" id="minSpeed" min="0.1" max="2" step="0.05">
+      </div>
+      <div class="field">
+        <label for="maxSpeed">Maximum speed</label>
+        <input type="number" id="maxSpeed" min="1" max="16" step="0.5">
+      </div>
+      <div class="field">
+        <label for="defaultSpeed">Default (reset) speed</label>
+        <input type="number" id="defaultSpeed" min="0.1" max="16" step="0.05">
+      </div>
+      <div class="field">
+        <label for="presetSpeeds">Preset speeds <span class="hint">(comma-separated)</span></label>
+        <input type="text" id="presetSpeeds" placeholder="0.5, 1.0, 1.25, 1.5, 2.0, 3.0">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Overlay</h2>
+      <div class="field row">
+        <label for="showOverlay">Show speed overlay on video</label>
+        <input type="checkbox" id="showOverlay">
+      </div>
+      <div class="field">
+        <label for="overlayAutoHideMs">Auto-hide delay (ms) <span class="hint">(0 = always visible)</span></label>
+        <input type="number" id="overlayAutoHideMs" min="0" max="30000" step="100">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Keyboard Shortcuts</h2>
+      <p class="hint">Click a field and press the desired key combination.</p>
+      <div class="shortcut-list">
+        <div class="shortcut-row">
+          <label>Increase speed</label>
+          <input type="text" class="shortcut-input" data-action="increaseSpeed" readonly>
+        </div>
+        <div class="shortcut-row">
+          <label>Decrease speed</label>
+          <input type="text" class="shortcut-input" data-action="decreaseSpeed" readonly>
+        </div>
+        <div class="shortcut-row">
+          <label>Reset speed</label>
+          <input type="text" class="shortcut-input" data-action="resetSpeed" readonly>
+        </div>
+        <div class="shortcut-row">
+          <label>Toggle overlay</label>
+          <input type="text" class="shortcut-input" data-action="toggleOverlay" readonly>
+        </div>
+        <div class="shortcut-row">
+          <label>Cycle presets</label>
+          <input type="text" class="shortcut-input" data-action="cyclePreset" readonly>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="save" class="btn primary">Save</button>
+      <button id="reset" class="btn">Reset to Defaults</button>
+      <span id="status" class="status"></span>
+    </div>
+  </div>
+
+  <script src="../core/defaults.js"></script>
+  <script src="../core/compat.js"></script>
+  <script src="../core/keymap.js"></script>
+  <script src="../core/storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
