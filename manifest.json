@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "TempoPilot",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight video playback speed controller with custom keyboard shortcuts and overlay.",
   "permissions": ["storage"],
   "browser_specific_settings": {
