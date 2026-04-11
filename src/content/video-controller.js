@@ -41,33 +41,40 @@ const VideoController = (() => {
 
   function increaseSpeed() {
     const video = VideoFinder.getActiveVideo();
-    if (!video) return;
+    if (!video) return false;
     setSpeed(video, video.playbackRate + settings.speedStep);
+    return true;
   }
 
   function decreaseSpeed() {
     const video = VideoFinder.getActiveVideo();
-    if (!video) return;
+    if (!video) return false;
     setSpeed(video, video.playbackRate - settings.speedStep);
+    return true;
   }
 
   function resetSpeed() {
     const video = VideoFinder.getActiveVideo();
-    if (!video) return;
+    if (!video) return false;
     setSpeed(video, settings.defaultSpeed);
+    return true;
   }
 
   function cyclePreset() {
     const video = VideoFinder.getActiveVideo();
-    if (!video || !settings.presetSpeeds.length) return;
+    if (!video || !settings.presetSpeeds.length) return false;
     presetIndex = (presetIndex + 1) % settings.presetSpeeds.length;
     setSpeed(video, settings.presetSpeeds[presetIndex]);
+    return true;
   }
 
   function toggleOverlay() {
+    const videos = VideoFinder.getAll();
+    if (videos.length === 0) return false;
     const newState = !Overlay.isVisible();
     Overlay.setVisible(newState);
-    VideoFinder.getAll().forEach((v) => Overlay.applyVisibility(v));
+    videos.forEach((v) => Overlay.applyVisibility(v));
+    return true;
   }
 
   function clamp(val, min, max) {
